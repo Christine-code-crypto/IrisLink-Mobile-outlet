@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Report</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid lightgrey;
+            text-align: left;
+            padding: 8px;
+        }
+        th {
+            background-color: lightgrey;
+        }
+        #logo {
+            width: 100px; /* Adjust this width as needed */
+            height: 85px; /* Maintain aspect ratio */
+            margin-top: 0; /* Remove any top margin */
+            text-align: center;
+        }
+        p{
+            text-align: right;
+        }
+        h1{
+            text-align: center;
+            font-family: 'Roboto', sans-serif; /* Specify Roboto font family */
+        }
+    </style>
+</head>
+<body>
+    
+    
+    <img id="logo" src="static/images/logo.jpg" alt="Logo">
+    <h1>Product Report</h1>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Category</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for product in products %}
+            <tr>
+                <td>{{ product.name }}</td>
+                <td>{{ product.category }}</td>
+                <td>{{ product.price }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+    <p><b>Report generated on: {{ logo.date|date:"F j, Y, P" }}</b></p>
+</body>
+</html>

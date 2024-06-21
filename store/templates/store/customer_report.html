@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Report</title>
+    <style>
+        /* Define your CSS styles here */
+        /* For example: */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid lightgrey;
+            text-align: left;
+            padding: 8px;
+        }
+        th {
+            background-color: lightgrey;
+        }
+        #logo {
+            width: 100px; /* Adjust this width as needed */
+            height: 85px; /* Maintain aspect ratio */
+            margin-top: 0; /* Remove any top margin */
+            text-align: center;
+        }
+        p{
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+    
+    <img id="logo" src="static/images/logo.jpg" alt="Logo">
+    <hr>
+    <h2>Customer Report</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Customer</th>
+                <th>Phone</th>
+                <th>Order ID</th>
+                <th>Products</th>
+                <th>Date Ordered</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for customer in customers %}
+                {% for order in customer.order_set.all %}
+                    <tr>
+                        <td>{{ customer.name }}</td>
+                        <td>{{ customer.phone }}</td>
+                        <td>{{ order.id }}</td>
+                        <td>
+                            <ul>
+                                {% for order_item in order.orderitem_set.all %}
+                                    <li>{{ order_item.product.name }}</li>
+                                {% endfor %}
+                            </ul>
+                        </td>
+                        <td>{{ order.date_created }}</td>
+                        <td>{{ order.status }}</td>
+                    </tr>
+                {% endfor %}
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <p><b>Report generated on: {{ logo.date|date:"F j, Y, P" }}</b></p>
+</body>
+</html>

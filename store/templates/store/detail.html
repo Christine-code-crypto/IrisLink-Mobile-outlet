@@ -1,0 +1,40 @@
+{% extends 'store/main.html' %}
+{% load static %}
+{% block content %}
+<!-- detail.html -->
+<div class="row">
+    
+    <div class="col-lg-4">
+        <h2><b>{{ product.name }}</b></h2>
+        <div class="col-lg-3 d-flex flex-col p-3">
+            <div class="rounded border p-3 d-flex flex-column justify-content-between">
+                <div class="w-fit rounded border border-dark">
+                    <img class="img-fluid" src="{{ product.image.url }}">
+                </div>
+                <div class="mt-2">
+                    <div class="d-flex justify-content-between">
+                        <strong>{{ product.name }}</strong>
+                        <div style="width: 65px;"></div> <!-- Adjust width as needed -->
+                        <strong>ksh{{ product.price|floatformat:2 }}</strong>
+                    </div>
+                    <hr style="background-color: black;">
+                    <div class="d-flex justify-content-between">
+                        <button data-product="{{ product.id }}" data-action="add" class="btn btn-outline-secondary add-btn update-cart">Add to Cart</button>
+                        <div style="width: 65px;"></div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <h3><b>Description</b></h3>
+        <ul>
+            {% for line in description_lines %}
+            <li>{{ line }}</li>
+            {% endfor %}
+        </ul>
+        <!-- Add more details as needed -->
+    </div>
+</div>
+{% endblock %}
